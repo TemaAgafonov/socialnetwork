@@ -2,7 +2,6 @@ import './App.css';
 import Header from "./components/header/header";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Profile from "./components/profile/profile";
-import Peoples from "./components/peoples/peoples";
 import Music from "./components/music/music";
 import Videos from "./components/videos/videos";
 import Settings from "./components/settings/settings";
