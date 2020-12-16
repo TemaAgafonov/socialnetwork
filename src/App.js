@@ -9,6 +9,7 @@ import Settings from "./components/settings/settings";
 import Cloud from "./components/cloud/cloud";
 import Messages from "./components/messages/messages";
 import {Grid} from "@material-ui/core";
+import PeoplesContainer from "./components/peoples/PeoplesContainer";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Grid item xs={8}>
             <Router>
                 <Route path='/profile'><Profile/></Route>
-                <Route path='/peoples'><Peoples/></Route>
+                <Route path='/peoples'><PeoplesContainer/></Route>
                 <Route path='/messages'><Messages/></Route>
                 <Route path='/music'><Music/></Route>
                 <Route path='/videos'><Videos/></Route>
