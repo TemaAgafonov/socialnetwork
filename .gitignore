@@ -24,3 +24,5 @@ yarn-error.log*
 
 #and other
 /.idea
+.gitignore
+.eslintcache

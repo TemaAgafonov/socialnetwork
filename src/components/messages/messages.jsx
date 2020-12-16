@@ -1,13 +1,12 @@
 import {
     Button,
     Card,
-    CardActionArea,
     CardContent,
     Grid, List, ListItem,
     makeStyles, TextField,
-    Typography
 } from "@material-ui/core";
 import Friends from "./friends/friends";
+import Message from "./Message/message";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -29,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     right: {
         justifyContent: 'flex-end'
     },
+    left: {
+        justifyContent: 'flex-start'
+    },
     wall: {
         alignItems: 'flex-end'
     }
@@ -36,27 +38,26 @@ const useStyles = makeStyles((theme) => ({
 
 const Messages = (props) => {
     const classes = useStyles();
+    console.log(props)
+    let messagesElements = props.messages.map(p => (
+        <Message
+            text={p.message}
+            who={p.itsme ? classes.left : classes.right}
+        />
+    ))
     return (
         <Grid container className={classes.container}>
             <Grid item xs={6}>
                 <Card>
-                    {/*<CardActionArea >*/}
-                    {/*    <Typography variant="h5" className={classes.blockname}>Друзья</Typography>*/}
-                    {/*</CardActionArea>*/}
                     <CardContent>
-                        <Friends/>
+                        <Friends friends={props.friends}/>
                     </CardContent>
                 </Card>
             </Grid>
             <Grid item xs={6}>
                 <Card className={classes.container}>
                     <List className={classes.list}>
-                        <ListItem>
-                            Hello
-                        </ListItem>
-                        <ListItem className={classes.right}>
-                            Hello
-                        </ListItem>
+                        {messagesElements}
                         <ListItem className={classes.wall}>
                             <TextField
                                 multiline

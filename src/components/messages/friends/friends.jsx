@@ -10,11 +10,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Friends = (props) => {
     const classes = useStyles();
+    let friendsElements = props.friends.map(p=>(
+        <Friend
+            name={p.name}
+            url={p.url}
+        />
+        )
+    )
     return (
         <List className={classes.list}>
-            <Friend name ="Сэр Акотан" url = "https://i.pinimg.com/736x/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64--youtube.jpg"/>
-            <Friend name ="Иоганн" url = "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"/>
-            <Friend name ="Сервелат" url = "https://crosti.ru/patterns/00/0b/46/1b4f718617/preview.jpg"/>
+            {/*<Friend name ="Сэр Акотан" url = "https://i.pinimg.com/736x/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64--youtube.jpg"/>*/}
+            {/*<Friend name ="Иоганн" url = "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"/>*/}
+            {/*<Friend name ="Сервелат" url = "https://crosti.ru/patterns/00/0b/46/1b4f718617/preview.jpg"/>*/}
+            {friendsElements}
         </List>
     )
 }
