@@ -31,6 +31,22 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
     const classes = useStyles();
+    let Posts = props.messages.map(e => (
+            <div>
+                <Typography>{e.message}</Typography>
+                <Divider/>
+            </div>
+            )
+        )
+
+    let addPost = () => {
+        props.sendMessage()
+    }
+
+    let onPostUpdate = (e) => {
+        let text = e.target.value
+        props.updateNewMessageBody(text)
+    }
     return (
         <Grid container className={classes.container}>
             <Grid item xs={12}></Grid>
@@ -58,17 +74,15 @@ const Profile = (props) => {
                             rowsMax={4}
                             className={classes.text}
                             label="Новая запись"
+                            onChange={onPostUpdate}
+                            value={props.newTextMessage}
                         />
-                        <Button>Send</Button>
+                        <Button
+                            onClick={addPost}
+                        >Send</Button>
                     </CardActionArea>
                     <CardContent>
-                        <Typography>Hello</Typography>
-                        <Divider />
-                        <Typography>Hello</Typography>
-                        <Divider />
-                        <Typography>Hello</Typography>
-                        <Divider />
-                        <Typography>Hello</Typography>
+                        {Posts}
                     </CardContent>
                 </Card>
             </Grid>
