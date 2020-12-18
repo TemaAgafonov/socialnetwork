@@ -3,20 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
 
 let initialState = {
-    peoples: [
-        {id: 1, name: "Сэр Акотан", url: "https://i.pinimg.com/736x/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64--youtube.jpg"},
-        {id: 2, name: "Иоганн", url: "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"},
-        {id: 3, name: "Сервелат", url: "https://crosti.ru/patterns/00/0b/46/1b4f718617/preview.jpg"},
-        {id: 4, name: "Мурзик", url: "https://a.d-cd.net/9db1a94s-960.jpg"},
-        {id: 5, name: "Василий", url: "https://apikabu.ru/img_n/2011-11_1/o5t.jpg"},
-        {id: 6, name: "Феофан", url: "https://sun9-19.userapi.com/c9482/u2497700/145084936/x_7c099f79.jpg"},
-        {id: 7, name: "Сэр Акотан", url: "https://i.pinimg.com/736x/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64--youtube.jpg"},
-        {id: 8, name: "Иоганн", url: "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"},
-        {id: 9, name: "Сервелат", url: "https://crosti.ru/patterns/00/0b/46/1b4f718617/preview.jpg"},
-        {id: 10, name: "Мурзик", url: "https://a.d-cd.net/9db1a94s-960.jpg"},
-        {id: 11, name: "Василий", url: "https://apikabu.ru/img_n/2011-11_1/o5t.jpg"},
-        {id: 12, name: "Феофан", url: "https://sun9-19.userapi.com/c9482/u2497700/145084936/x_7c099f79.jpg"},
-    ]
+    peoples: []
 }
 
 export const peoplesReducer = (state = initialState, action) => {
@@ -53,7 +40,7 @@ export const peoplesReducer = (state = initialState, action) => {
         case SETUSERS: {
             stateCopy = {
                 ...state,
-                friends: [...state.friends, ...action.friends]
+                peoples: [...state.peoples, ...action.peoples]
             }
             return stateCopy;
         }
