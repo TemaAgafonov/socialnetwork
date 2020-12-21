@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import Profile from "./profile";
-import {sendMessageAction, updateNewTextMessageAction} from "../../redux/profile-reducer";
+import Wall from "./wall";
+import {sendMessageAction, updateNewTextMessageAction} from "../../../redux/profile-reducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -20,6 +20,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+const WallContainer = connect(mapStateToProps, mapDispatchToProps)(Wall);
 
-export default MessagesContainer;
+export default WallContainer;
