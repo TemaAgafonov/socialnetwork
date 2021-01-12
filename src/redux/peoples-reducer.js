@@ -1,9 +1,15 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
+const SET_CURRENT_PAGE = 'SETCURRENTPAGE'
+const SET_TOTAL_USERS_COUNT = 'SETTOTALUSERSCOUNT'
 
 let initialState = {
-    peoples: []
+    peoples: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
+
 }
 
 export const peoplesReducer = (state = initialState, action) => {
@@ -38,11 +44,13 @@ export const peoplesReducer = (state = initialState, action) => {
             return stateCopy;
         }
         case SETUSERS: {
-            stateCopy = {
-                ...state,
-                peoples: [...state.peoples, ...action.peoples]
-            }
-            return stateCopy;
+            return { ...state, peoples: [...action.peoples]}
+        }
+        case SET_CURRENT_PAGE: {
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return {...state, totalUsersCount: action.totalUsersCount}
         }
         default: {
             return state;
@@ -50,9 +58,10 @@ export const peoplesReducer = (state = initialState, action) => {
     }
 }
 
-
+//action creators
 export const follow = (id) => ({ type: FOLLOW, id })
 export const unfollow = (id) => ({type: UNFOLLOW, id })
 export const setusers = (peoples) => ({type: SETUSERS, peoples })
-
+export const setcurrentpage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const settotaluserscount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
 export default peoplesReducer;
