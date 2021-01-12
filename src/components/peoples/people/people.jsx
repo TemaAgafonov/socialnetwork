@@ -14,7 +14,7 @@ const People = (props) => {
     const classes = useStyles();
     return (
         <ListItem button>
-            <Avatar alt={props.name} src={props.url} className={classes.large}/>
+            <Avatar alt={props.name} src={props.url} style={{ height: '70px', width: '70px' }}/>
             <Typography className={classes.itemname}> {props.name}</Typography>
         </ListItem>
 
