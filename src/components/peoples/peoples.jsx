@@ -1,6 +1,7 @@
 import {List, makeStyles} from "@material-ui/core";
 import People from "./people/people";
-import * as axios from 'axios'
+import {Pagination} from "@material-ui/lab";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -10,21 +11,25 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Peoples = (props) => {
-
-    let getUsers = () =>
-    {
-        if (props.peoples.length === 0) {
-            axios.get("http://127.0.0.1:8000/api/users/")
-                .then(response => {
-                    props.setusers(response.data.results)
-                })
-        }
-    }
-
     const classes = useStyles();
-    let peoplesElements = props.peoples.map(p => (
-        <People name={p.name} url={p.photo}/>
-    ))
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
+    return <div>
+        <Pagination
+            count={pagesCount}
+            shape="rounded"
+            onChange={props.onPageChanged}
+            defaultPage={props.currentPage}
+        />
+        <List className={classes.list}>
+            {props.peoples.map(p => (
+                <People name={p.name} url={p.photos.small}/>
+            ))}
+        </List>
+    </div>
 }
 
 export default Peoples

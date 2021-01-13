@@ -1,19 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {follow, setusers, unfollow, setcurrentpage, settotaluserscount} from "../../redux/peoples-reducer";
-import {List, withStyles} from "@material-ui/core";
 import * as axios from "axios";
-import People from "./people/people";
-import {Pagination} from "@material-ui/lab";
+import Peoples from "./peoples";
 
-const styles = theme => ({
-    list: {
-        overflow: 'auto',
-        maxHeight: 460,
-    },
-});
 
-class Peoples extends React.Component {
+
+class PeoplesUserAPI extends React.Component {
     componentDidMount() {
         axios.get(`http://127.0.0.1:8000/api/users/?page=${this.props.currentPage}&size=${this.props.pageSize}`)
             .then(response => {
@@ -33,26 +26,13 @@ class Peoples extends React.Component {
     }
 
     render() {
-        const {classes} = this.props;
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-        return <div>
-            <Pagination
-                count={pagesCount}
-                shape="rounded"
-                onChange={this.onPageChanged}
-                defaultPage={this.props.currentPage}
-            />
-            {/*<button onClick={this.getUsers}>Get Users</button>*/}
-            <List className={classes.list}>
-                {this.props.peoples.map(p => (
-                    <People name={p.name} url={p.photos.small}/>
-                ))}
-            </List>
-        </div>
+        return <Peoples
+            totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            onPageChanged={this.onPageChanged.bind(this)}
+            currentPage={this.props.currentPage}
+            peoples={this.props.peoples}
+        />
     }
 }
 
@@ -85,6 +65,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const PeoplesContainer = connect(mapStateToProps, mapDispatchToProps)(Peoples);
+const PeoplesContainer = connect(mapStateToProps, mapDispatchToProps)(PeoplesUserAPI);
 
-export default withStyles(styles)(PeoplesContainer);
+export default PeoplesContainer;
